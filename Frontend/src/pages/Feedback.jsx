@@ -8,14 +8,14 @@ import axios from "axios";
 const SignUp = () => {
   const [formData, setFormData] = useState({
     fullName: "",
-    userName: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
-  const [success, setSuccess] = useState(false); // Track signup success
-  const [error, setError] = useState(""); // Track errors if any
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -28,8 +28,6 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Reset messages
     setError("");
     setSuccess(false);
 
@@ -39,24 +37,32 @@ const SignUp = () => {
     }
 
     try {
+      const payload = {
+        username: formData.username,
+        fullName: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+      };
+
       const response = await axios.post(
         "https://backend-4hrs.onrender.com/api/auth/signup",
-        formData
+        payload
       );
 
       console.log("Signup success:", response.data);
       setSuccess(true);
-      // Optionally reset form
+
+      // Clear form
       setFormData({
         fullName: "",
-        userName: "",
+        username: "",
         email: "",
         password: "",
         confirmPassword: "",
       });
     } catch (err) {
       console.error("Signup error:", err.response?.data || err.message);
-      setError("Signup failed. Please try again.");
+      setError(err.response?.data?.message || "Signup failed.");
     }
   };
 
@@ -72,12 +78,9 @@ const SignUp = () => {
           </h1>
           <h2 className="text-xl font-semibold mb-5">Account Sign Up</h2>
 
-          {/* Success Message */}
           {success ? (
             <div className="text-green-800 bg-green-200 p-4 rounded shadow-md">
-              <p className="font-semibold text-lg">
-                Account created successfully!
-              </p>
+              <p className="font-semibold text-lg">Account created successfully!</p>
               <button
                 onClick={() => navigate("/login")}
                 className="mt-4 py-2 px-5 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
@@ -96,9 +99,9 @@ const SignUp = () => {
               />
               <Input
                 type="text"
-                name="userName"
+                name="username"
                 placeholder="User Name"
-                value={formData.userName}
+                value={formData.username}
                 onChange={handleChange}
               />
               <Input
@@ -136,7 +139,6 @@ const SignUp = () => {
             </form>
           )}
 
-          {/* Link to Login page */}
           {!success && (
             <div className="grid font-semibold mt-4">
               <p>

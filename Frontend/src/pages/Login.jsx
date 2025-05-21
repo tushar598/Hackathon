@@ -25,7 +25,7 @@ const Login = () => {
             <Input type="password" placeholder="Enter Password" />
 
             <button
-              type="submit"
+              onClick={()=> navigate("/dashboard")}
               className="py-2 px-5 w-80 border-2 font-semibold bg-green-400 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,1)] hover:bg-green-500"
             >
               Log In

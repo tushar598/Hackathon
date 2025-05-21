@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   Menu,
@@ -11,8 +12,10 @@ import {
 import FeedbackModal from "../components/FeedbackModal";
 import TeamMember from "../components/TeamMember";
 import FeatureCard from "../components/FeatureCard";
+import { Navigate } from "react-router-dom";
 
-const Index = () => {
+const FrontPage = () => {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
@@ -109,7 +112,7 @@ const Index = () => {
             >
               Team
             </a>
-            <button className="font-medium text-white underline decoration-cyan-400 underline-offset-4 transition duration-200 hover:text-cyan-400">
+            <button onClick={()=> navigate("/help")} className="font-medium text-white underline decoration-cyan-400 underline-offset-4 transition duration-200 hover:text-cyan-400">
               Help!
             </button>
           </div>
@@ -187,6 +190,7 @@ const Index = () => {
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
             <button
+              onClick={() => navigate("/login")}
               className="w-full sm:w-auto px-8 py-3 text-lg font-semibold border-2 border-cyan-800 text-cyan-400 rounded-md
                       hover:bg-gray-800 hover:text-white transition duration-300
                       shadow-[0_0_8px_1.5px_rgba(6,182,212,0.7)] hover:shadow-[0_0_15px_3px_rgba(6,182,212,0.9)]
@@ -196,6 +200,7 @@ const Index = () => {
             </button>
 
             <button
+              onClick={() => navigate("/signup")}
               className="w-full sm:w-auto px-8 py-3 text-lg font-semibold bg-cyan-700 text-white rounded-md
                       hover:bg-cyan-600 transition duration-300
                       shadow-[0_0_8px_1.5px_rgba(6,182,212,0.5)] hover:shadow-[0_0_15px_3px_rgba(6,182,212,0.7)]
@@ -225,9 +230,9 @@ const Index = () => {
         </section>
 
         {/* About Us Section with animated border */}
-        <section id="about" className="mb-20 pt-10 scroll-mt-20">
-          <div className="relative border border-cyan-800/50 rounded-lg p-8 bg-gradient-to-b from-gray-900/50 to-black overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 opacity-50"></div>
+        <section id="about" className="mb-20  pt-10 scroll-mt-20">
+          <div className="relative border border-cyan-800/50 rounded-lg p-8  bg-gradient-to-b from-gray-900/50 to-black overflow-hidden group">
+            <div className="absolute pb-10 inset-0 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 opacity-50"></div>
 
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
             <div className="absolute bottom-0 right-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
@@ -244,15 +249,6 @@ const Index = () => {
                 presence to tell their story, and we're here to make that as
                 seamless as possible.
               </p>
-
-              <div className="flex justify-center mt-8">
-                <button
-                  className="px-6 py-2 text-sm font-medium text-cyan-400 border border-cyan-800 rounded-md 
-                         hover:bg-cyan-900/30 transition duration-300 group-hover:shadow-cyan-400/20 group-hover:shadow-sm"
-                >
-                  Learn More
-                </button>
-              </div>
             </div>
           </div>
         </section>
@@ -275,90 +271,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Contact Form */}
-        <section id="contact" className="mb-20 pt-10 scroll-mt-20">
-          <div className="bg-gradient-to-b from-gray-900 to-black border border-cyan-900/50 rounded-lg p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-cyan-400 mb-6 text-center">
-              Get In Touch
-            </h2>
-
-            <form className="max-w-lg mx-auto">
-              <div className="mb-4">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-400 mb-1"
-                >
-                  Name
-                </label>
-                <div className="relative">
-                  <User
-                    size={16}
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
-                  />
-                  <input
-                    type="text"
-                    id="name"
-                    className="bg-gray-900 border border-gray-700 text-white rounded-md pl-10 py-2 pr-3 w-full focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-400 mb-1"
-                >
-                  Email
-                </label>
-                <div className="relative">
-                  <Mail
-                    size={16}
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
-                  />
-                  <input
-                    type="email"
-                    id="email"
-                    className="bg-gray-900 border border-gray-700 text-white rounded-md pl-10 py-2 pr-3 w-full focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600"
-                    placeholder="Your email"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-400 mb-1"
-                >
-                  Message
-                </label>
-                <div className="relative">
-                  <MessageSquare
-                    size={16}
-                    className="absolute left-3 top-3 text-gray-500"
-                  />
-                  <textarea
-                    id="message"
-                    rows={4}
-                    className="bg-gray-900 border border-gray-700 text-white rounded-md pl-10 py-2 pr-3 w-full focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600"
-                    placeholder="Your message"
-                    required
-                  ></textarea>
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-cyan-700 hover:bg-cyan-600 text-white font-medium py-2 px-4 rounded-md transition duration-300 flex items-center justify-center gap-2"
-              >
-                Send Message <Send size={16} />
-              </button>
-            </form>
-          </div>
-        </section>
-
         {/* Feedback Section */}
         <section className="text-center mt-10 px-4 max-w-md mx-auto">
           <p className="text-lg font-medium mb-4 text-gray-200">
@@ -367,7 +279,7 @@ const Index = () => {
             <span className="text-cyan-400">Please give your feedback.</span>
           </p>
           <button
-            onClick={() => setFeedbackModalOpen(true)}
+            onClick={() => navigate("/feedback") }
             className="w-full max-w-xs bg-white text-black px-8 py-3 rounded-md font-semibold
                      hover:bg-cyan-400 hover:text-white
                      transition duration-300 shadow-md hover:shadow-cyan-400/70"
@@ -425,4 +337,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default FrontPage;

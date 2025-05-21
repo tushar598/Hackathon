@@ -1,6 +1,7 @@
 import React from 'react'
-
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
    <>
     {/* Navbar */}
@@ -9,7 +10,7 @@ const Navbar = () => {
       <div className="text-black text-lg font-bold py-1 bg-white px-3 border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
         MyPortfolio
       </div>
-      <button className="text-black underline font-semibold underline-offset-[2px] border-black py-1 px-2 transition duration-300">
+      <button onClick={()=> navigate("/help")} className="text-black underline font-semibold underline-offset-[2px] border-black py-1 px-2 transition duration-300">
         Help!
       </button>
     </div>
