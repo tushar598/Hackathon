@@ -39,7 +39,7 @@ const SignUp = () => {
             <p>
               If you already have an account then{" "}
               <Link to="/" className="text-blue-500 font-bold underline">
-                Sign In!
+                Sign Up!
               </Link>
             </p>
           </div>

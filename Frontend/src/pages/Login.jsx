@@ -1,11 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 
 const Login = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   return (
     <div className="bg-green-300 min-h-screen w-screen flex flex-col">
@@ -33,10 +33,11 @@ const Login = () => {
           </form>
 
           <div className="grid font-semibold mt-4">
-            <a href="#">
+            <p className="cursor-pointer">
               Forgot password?{" "}
-              <span className="text-blue-500 font-bold">Click here!</span>
-            </a>
+              <Link to='/forgot' className="text-blue-500 font-bold">Click here!</Link>
+            </p>
+
             <button
               onClick={() => navigate("/signup")}
               className="text-blue-600 underline mt-2"
