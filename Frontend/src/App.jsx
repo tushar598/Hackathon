@@ -10,7 +10,12 @@ import NotFound from "./pages/Notfound";
 const App = () => {
   return (
 
-    <Portfolio />
+    <Routes>
+      
+      <Route path="/" element={<Login/>}/>
+      <Route path="/forgot" element={<Forgot/>}/>
+      <Route path="/signup" element={<SignUp/>}/>
+    </Routes>
  
    
   );
